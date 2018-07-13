@@ -1,0 +1,24 @@
+﻿<AutoCompleteTextView 
+android:id="@+id/acType"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:maxLines="1"
+ android:paddingBottom="@dimen/lef_margin"
+ android:paddingTop="@dimen/lef_margin"
+ android:singleLine="true"
+ android:textSize="@dimen/header_text_large"/>
+
+
+
+ ArrayAdapter arrayAdapter= new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, dataList); 
+acType.setAdapter(arrayAdapter);
+ acType.setInputType(0);
+ acType.setOnFocusChangeListener(new View.OnFocusChangeListener()
+ {
+ @Override 
+public void onFocusChange(View v, boolean hasFocus) 
+{
+ if (hasFocus) acType.showDropDown();
+}
+});
+

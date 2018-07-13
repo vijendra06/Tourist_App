@@ -1,0 +1,27 @@
+Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+ photoPickerIntent.setType("image/*");
+  startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
+
+
+
+
+@Override protected void onActivityResult(int reqCode, int resultCode, Intent data)
+ {
+  super.onActivityResult(reqCode, resultCode, data);
+   if (resultCode == RESULT_OK)
+   { try
+     {
+      final Uri imageUri = data.getData();
+       final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+        final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+         image_view.setImageBitmap(selectedImage);
+          }
+           catch (FileNotFoundException e) { e.printStackTrace();
+           Toast.makeText(PostImage.this, "Something went wrong", Toast.LENGTH_LONG).show();
+            }
+    }
+    else
+     {
+     Toast.makeText(PostImage.this, "You haven't picked Image",Toast.LENGTH_LONG).show();
+      }
+      }
